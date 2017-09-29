@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int solve(String opr) {
+        
+        int result = 0;
+        
+        if(opr.contains("+")){
+           //ystem.out.println(opr);
+            
+            int a = Integer.valueOf(Character.toString(opr.charAt(0)));
+            int b = Integer.valueOf(Character.toString(opr.charAt(2)));
+           //ystem.out.println(a+" "+b);
+            result = a+b;
+            
+        }else{
+            int a = Integer.valueOf(Character.toString(opr.charAt(0)));
+            int b = Integer.valueOf(Character.toString(opr.charAt(2)));
+            result = a-b;
+            
+        }
+        
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String opr = in.next();
+        int result = solve(opr);
+        System.out.println(result);
+        in.close();
+    }
+}
