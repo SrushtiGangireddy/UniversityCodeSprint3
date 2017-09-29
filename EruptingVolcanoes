@@ -1,0 +1,171 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int[][] mountain = new int[n][n];
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                mountain[i][j]=0;
+            }
+        }
+        
+        int qu = sc.nextInt();
+        
+        int max = Integer.MIN_VALUE;
+        
+        for(int z=0;z<qu;z++){
+            
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            
+            int power = sc.nextInt();
+            
+            if((power-x) > 0){
+                
+                int maxPowerToBeFilled = power-x;
+                
+                int i,k=0,l=0;
+                int m=n;
+                
+                while(k<m && l<n){
+                    
+                    for(i=l;i<n;++i){
+                        if(mountain[k][i] == -1){
+                            mountain[k][i] = maxPowerToBeFilled;
+                            max = Math.max(max,mountain[k][i]);
+                        }else{
+                            mountain[k][i] += maxPowerToBeFilled;
+                            max = Math.max(max,mountain[k][i]);
+                        }
+                    }
+                    k++;
+                    
+                    for(i=k;i<m;i++){
+                        if(mountain[i][n-1] == -1){
+                            mountain[i][n-1] = maxPowerToBeFilled;
+                            max = Math.max(max,mountain[i][n-1]);
+                        }else{
+                            mountain[i][n-1] += maxPowerToBeFilled;
+                              max = Math.max(max,mountain[i][n-1]);
+                        }
+                    }
+                    n--;
+                    
+                    if(k<m){
+                        
+                        for(i=n-1;i>=l;--i){
+                            if(mountain[m-1][i] == -1){
+                            mountain[m-1][i] = maxPowerToBeFilled;
+                                  max = Math.max(max,mountain[m-1][i]);
+                        }else{
+                            mountain[m-1][i] += maxPowerToBeFilled;
+                                  max = Math.max(max,mountain[m-1][i]);
+                        }
+                        }
+                        m--;
+                        
+                    }
+                    
+                    if (l < n)
+            {
+                for (i = m-1; i >= k; --i)
+                {
+                    if(mountain[i][l] == -1){
+                            mountain[i][l] = maxPowerToBeFilled;
+                          max = Math.max(max,mountain[i][l]);
+                        }else{
+                            mountain[i][l] += maxPowerToBeFilled;
+                          max = Math.max(max,mountain[i][l]);
+                        }
+                }
+                l++;    
+            }       
+                    maxPowerToBeFilled++;
+                    
+                }
+                
+                
+            }else{
+                
+                int maxPowerToBeFilled = 0;
+                
+                 int i,k=x-power,l=y-power;
+                int m=n;
+             //   System.out.println("Power "+power);
+              //  System.out.println(x+" "+y);
+               // System.out.println(k+" "+l);
+                
+                while(k<m && l<n){
+                    
+                    for(i=l;i<n;++i){
+                        if(mountain[k][i] == -1){
+                            mountain[k][i] = maxPowerToBeFilled;
+                              max = Math.max(max,mountain[k][i]);
+                        }else{
+                            mountain[k][i] += maxPowerToBeFilled;
+                              max = Math.max(max,mountain[k][i]);
+                        }
+                    }
+                    k++;
+                    
+                    for(i=k;i<m;i++){
+                        if(mountain[i][n-1] == -1){
+                            mountain[i][n-1] = maxPowerToBeFilled;
+                              max = Math.max(max,mountain[i][n-1]);
+                        }else{
+                            mountain[i][n-1] += maxPowerToBeFilled;
+                              max = Math.max(max,mountain[i][n-1]);
+                        }
+                    }
+                    n--;
+                    
+                    if(k<m){
+                        
+                        for(i=n-1;i>=l;--i){
+                            if(mountain[m-1][i] == -1){
+                            mountain[m-1][i] = maxPowerToBeFilled;
+                                  max = Math.max(max,mountain[m-1][i]);
+                        }else{
+                            mountain[m-1][i] += maxPowerToBeFilled;
+                                max = Math.max(max,mountain[m-1][i]);
+                        }
+                        }
+                        m--;
+                        
+                    }
+                    
+                    if (l < n)
+            {
+                for (i = m-1; i >= k; --i)
+                {
+                    if(mountain[i][l] == -1){
+                            mountain[i][l] = maxPowerToBeFilled;
+                        max = Math.max(max,mountain[i][l]);
+                        }else{
+                            mountain[i][l] += maxPowerToBeFilled;
+                          max = Math.max(max,mountain[i][l]);
+                        }
+                }
+                l++;    
+            }       
+                    maxPowerToBeFilled++;
+                    
+                }
+                
+            } 
+           
+            
+        }
+   
+     System.out.println(max);   
+    }
+}
